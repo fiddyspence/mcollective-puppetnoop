@@ -1,5 +1,5 @@
 metadata    :name        => "Puppet Noop",
-            :description => "enable/disable noop for Puppet agent",
+            :description => "Setting editor for Puppet agent",
             :author      => "fiddyspence",
             :license     => "Apache License 2.0",
             :version     => "1.0",

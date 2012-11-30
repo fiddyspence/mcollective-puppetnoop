@@ -1,0 +1,5 @@
+mcollective-puppetnoop
+
+An mcollective agent to toggle the noop setting in your puppet.conf
+
+NOTE: You will need to restart the puppet agent out of band we don't do it here because it will immediately trigger a checkin and a puppet run.  You need to recycle the service, probably using the service agent to pick up the new setting.

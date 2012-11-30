@@ -1,6 +1,6 @@
 module MCollective
   module Agent
-    # An agent to manage the Puppet configuration file to toggle noop
+    # An agent to manage the Puppet configuration file 
 
     class Puppetconf<RPC::Agent
       metadata    :name        => "Puppet setting agent",

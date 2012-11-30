@@ -1,21 +1,7 @@
 module MCollective
   module Agent
-    # An agent to manage the Puppet Daemon
-    #
-    # Configuration Options:
-    #    puppetd.splaytime - Number of seconds within which to splay; no splay
-    #                        by default
-    #    puppetd.statefile - Where to find the state.yaml file; defaults to
-    #                        /var/lib/puppet/state/state.yaml
-    #    puppetd.lockfile  - Where to find the lock file; defaults to
-    #                        /var/lib/puppet/state/puppetdlock
-    #    puppetd.puppetd   - Where to find the puppet agent binary; defaults to
-    #                        /usr/bin/puppet agent
-    #    puppetd.summary   - Where to find the summary file written by Puppet
-    #                        2.6.8 and newer; defaults to
-    #                        /var/lib/puppet/state/last_run_summary.yaml
-    #    puppetd.pidfile   - Where to find puppet agent's pid file; defaults to
-    #                        /var/run/puppet/agent.pid
+    # An agent to manage the Puppet configuration file to toggle noop
+
     class Puppetnoop<RPC::Agent
       metadata    :name        => "Puppet Noop agent",
                   :description => "Modify Puppet noop config setting",

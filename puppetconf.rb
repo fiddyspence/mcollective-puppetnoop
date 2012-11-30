@@ -3,8 +3,8 @@ module MCollective
     # An agent to manage the Puppet configuration file to toggle noop
 
     class Puppetnoop<RPC::Agent
-      metadata    :name        => "Puppet Noop agent",
-                  :description => "Modify Puppet noop config setting",
+      metadata    :name        => "Puppet setting agent",
+                  :description => "Modify Puppet config setting",
                   :author      => "fiddyspence",
                   :license     => "Apache License 2.0",
                   :version     => "1.0",
@@ -21,16 +21,11 @@ module MCollective
       end
 
       action "status" do
-        reply[:value] = @ini_file.get_value('agent', 'noop') || Puppet['noop']
+        reply[:value] = @ini_file.get_value(:section, :setting) || Puppet['noop']
       end
 
-      action "enable" do
-        @ini_file.set_value('agent', 'noop', 'true')
-        @ini_file.save
-      end
-
-      action "disable" do
-        @ini_file.set_value('agent', 'noop', 'false')
+      action "edit" do
+        @ini_file.set_value(:section, :setting, :value)
         @ini_file.save
       end
 

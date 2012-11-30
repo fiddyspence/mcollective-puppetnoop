@@ -6,7 +6,7 @@ metadata    :name        => "Puppet Noop",
             :url         => "https://github.com/fiddyspence/mcollective-puppetnoop",
             :timeout     => 20
 
-action "status", :description => "Get a summary of the last puppet run" do
+action "status", :description => "get current value of the puppet agent noop setting" do
     display :always
 
     output :value,

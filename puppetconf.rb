@@ -21,11 +21,11 @@ module MCollective
       end
 
       action "status" do
-        reply[:value] = @ini_file.get_value(:section, :setting) || "unset"
+        reply[:value] = @ini_file.get_value(request[:section], request[:setting]) || "unset"
       end
 
       action "edit" do
-        @ini_file.set_value(:section, :setting, :value)
+        @ini_file.set_value(request[:section], request[:setting], request[:value])
         @ini_file.save
       end
 

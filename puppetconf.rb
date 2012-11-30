@@ -25,12 +25,17 @@ module MCollective
       end
 
       action "edit" do
-        begin
-          @ini_file.set_value(request[:section], request[:setting], request[:value])
-          @ini_file.save
-          reply["status"] = 'success'
-        rescue => e
-          reply["status"] = "failure #{e.message}"
+        value = @ini_file.get_value(request[:section], request[:setting])
+        if value == nil or value != request[:value]
+          begin
+            @ini_file.set_value(request[:section], request[:setting], request[:value])
+            @ini_file.save
+            reply["status"] = 'success'
+          rescue => e
+            reply["status"] = "failure #{e.message}"
+          end
+        else
+          reply["status"] = 'no change'
         end
       end
 

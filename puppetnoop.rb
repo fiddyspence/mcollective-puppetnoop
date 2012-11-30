@@ -21,7 +21,7 @@ module MCollective
       end
 
       action "status" do
-        reply[:output] = @ini_file.get_value('agent', 'noop') || Puppet['noop']
+        reply[:value] = @ini_file.get_value('agent', 'noop') || Puppet['noop']
       end
 
       action "enable" do

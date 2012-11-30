@@ -9,9 +9,9 @@ metadata    :name        => "Puppet Noop",
 action "status", :description => "Get a summary of the last puppet run" do
     display :always
 
-    output :mode,
-           :description => "Time per resource type",
-           :display_as => "String"
+    output :value,
+           :description => "current noop setting",
+           :display_as => "current setting"
 end
 
 action "enable", :description => "Enable puppet noop mode" do

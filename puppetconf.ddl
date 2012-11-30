@@ -7,12 +7,11 @@ metadata    :name        => "Puppet Noop",
             :timeout     => 20
 
 action "status", :description => "get current value of a puppet setting" do
-
     display :always
 
     input :setting,
       :prompt      => "The setting",
-      :description => "The setting to #{act}",
+      :description => "The setting to check",
       :type        => :string,
       :validation  => '^[a-zA-Z\.\-_\d]+$',
       :optional    => false,
@@ -20,33 +19,32 @@ action "status", :description => "get current value of a puppet setting" do
 
     input :section,
       :prompt      => "The section",
-      :description => "The section to #{act}",
+      :description => "The section to check",
       :type        => :string,
       :validation  => '^[a-zA-Z\.\-_\d]+$',
       :optional    => false,
       :maxlength   => 90
 
-    output :value,
+    output "value",
            :description => "current setting",
            :display_as => "current setting"
 end
 
-["edit"].each do |act|
-  action act, :description => "#{act} puppet setting" do
+action "edit", :description => "edit puppet setting" do
   
-    display :failed
+  display :failed
 
-    input :setting,
-      :prompt      => "The setting",
-      :description => "The setting to #{act}",
-      :type        => :string,
-      :validation  => '^[a-zA-Z\.\-_\d]+$',
-      :optional    => false,
-      :maxlength   => 90
+  input :setting,
+    :prompt      => "The setting",
+    :description => "The setting to edit",
+    :type        => :string,
+    :validation  => '^[a-zA-Z\.\-_\d]+$',
+    :optional    => false,
+    :maxlength   => 90
 
     input :section,
       :prompt      => "Setting section",
-      :description => "The setting to #{act}",
+      :description => "The setting to edit",
       :type        => :string,
       :validation  => '^[a-zA-Z\.\-_\d]+$',
       :optional    => false,
@@ -54,15 +52,14 @@ end
 
     input :value,
       :prompt      => "Setting value",
-      :description => "The setting to #{act}",
+      :description => "The setting to edit",
       :type        => :string,
       :validation  => '^[a-zA-Z\.\-_\d]+$',
       :optional    => false,
       :maxlength   => 90
 
     output "status",
-      :description => "The status of the service after #{act.sub(/p$/, 'pp')}ing",
-      :display_as  => "Service Status"
+      :description => "The status of the value after edit",
+      :display_as  => "new setting"
 
-  end
 end

@@ -21,7 +21,7 @@ module MCollective
       end
 
       action "status" do
-        reply[:value] = @ini_file.get_value(request[:section], request[:setting]) || "unset"
+        reply["value"] = @ini_file.get_value(request[:section], request[:setting]) || "unset - default value #{Puppet[request[:setting]]}"
       end
 
       action "edit" do

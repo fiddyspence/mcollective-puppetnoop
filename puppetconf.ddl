@@ -44,7 +44,7 @@ action "edit", :description => "edit puppet setting" do
 
     input :section,
       :prompt      => "Setting section",
-      :description => "The setting to edit",
+      :description => "The configuration file section the setting is in",
       :type        => :string,
       :validation  => '^[a-zA-Z\.\-_\d]+$',
       :optional    => false,
@@ -52,7 +52,7 @@ action "edit", :description => "edit puppet setting" do
 
     input :value,
       :prompt      => "Setting value",
-      :description => "The setting to edit",
+      :description => "The value to assign the setting",
       :type        => :string,
       :validation  => '^[a-zA-Z\.\-_\d]+$',
       :optional    => false,

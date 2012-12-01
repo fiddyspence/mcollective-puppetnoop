@@ -31,7 +31,7 @@ module MCollective
           else
             thesetting = 'false'
           end
-          value = @ini_file.get_value(request[:section], [:setting])
+          value = @ini_file.get_value('agent', 'noop')
           if value == nil or value != thesetting
             begin
               @ini_file.set_value('agent', 'noop', thesetting)

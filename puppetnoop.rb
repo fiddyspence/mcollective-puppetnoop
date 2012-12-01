@@ -24,14 +24,26 @@ module MCollective
         reply[:value] = @ini_file.get_value('agent', 'noop') || Puppet['noop']
       end
 
-      action "enable" do
-        @ini_file.set_value('agent', 'noop', 'true')
-        @ini_file.save
-      end
-
-      action "disable" do
-        @ini_file.set_value('agent', 'noop', 'false')
-        @ini_file.save
+      ['enable','disable'].each do |act|
+        action act do
+          if act == 'enable'
+            thesetting = 'true'
+          else
+            thesetting = 'false'
+          end
+          value = @ini_file.get_value(request[:section], [:setting])
+          if value == nil or value != thesetting
+            begin
+              @ini_file.set_value('agent', 'noop', thesetting)
+              @ini_file.save
+              reply["status"] = 'success'
+            rescue => e
+              reply["status"] = "failure #{e.message}"
+            end
+          else
+            reply["status"] = 'no change'
+          end
+        end
       end
 
       private
